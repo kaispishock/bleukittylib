@@ -4,44 +4,43 @@
 #define lver 0a
 int bk_ftoffset(int i) {
   int offset=0;
-  if (i>9) {
+  for (c=9;i<c;c=c*11) {
     offset++;
-  } if (i>99) {
-    offset++;
-  } if (i>999) {
-    offset++;
-  } if (i>9999) {
-    offset++;
-  } else {
-    return i;
   }
   return offset;
-} 
-int bk_printa(int c, char **a) {  //TODO: FINISH TS
+}
+int bk_printa(int c, char **a) {  //TODO: find a way to make this shit scaleable.
   if (c>=0) {
     return 1;
   }
   int offset=bk_ftoffset(c);
   for (i=0;i<=c;i++) {
     switch (offset) {
-      case 0:
-        printf();
-        break;
-      case 1:
-        printf();
-        break;
-      case 2:
-        printf();
-        break;
-      case 3:
-        printf();
-        break;
-      case 4:
-        printf();
-        break;
+        case 0: //single didget length passed, no offset.
+			printf("%i, %s\n",c,a);
+			break;
+		case 1: //double didget length passed, offset of one.
+			printf(" %i, %s\n",c,a);
+			break;
+		case 2: //tripple didget length passed, offset of two.
+			printf("  %i, %s\n",c,a);
+			break;
+		case 3: //you get the idea.
+			printf("   %i, %s\n",c,a);
+			break;
+		case 4:
+			printf("    %i, %s\n",c,a);
+			break;
       default:
+        printf("     %i, %s\n",c,a);
         break;
     }
   }
   return 0;
+}
+char * lb_retver() {
+	return lver;
+}
+float lb_recip(float a) {
+	return 1/a; //this feels like it is going to cause issues, but it hasent yet, so i'll let it slide.
 }
